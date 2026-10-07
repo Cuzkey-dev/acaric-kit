@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>アカリク登録キット</title>
+<style>
+:root{--bg:#fbfaf7;--fg:#1f2328;--muted:#5d6670;--line:#e3e0d8;--card:#fff;--accent:#2f5d8a;--code:#f3f1ec}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#16181b;--fg:#e6e6e3;--muted:#a0a6ad;--line:#2c3036;--card:#1d2024;--accent:#8db4dc;--code:#24282d}}
+:root[data-theme="dark"]{--bg:#16181b;--fg:#e6e6e3;--muted:#a0a6ad;--line:#2c3036;--card:#1d2024;--accent:#8db4dc;--code:#24282d}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.8 "Hiragino Sans","Yu Gothic UI","Noto Sans JP",sans-serif}
+main{max-width:720px;margin:0 auto;padding:40px 16px 64px}
+h1{font-size:1.6rem;line-height:1.4;margin:0 0 8px}
+h2{font-size:1.15rem;margin:40px 0 8px;padding-top:16px;border-top:1px solid var(--line)}
+p,li{color:var(--fg)}
+.lead{color:var(--muted)}
+.box{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:16px 20px;margin:16px 0}
+ol{padding-left:1.4em}
+code{background:var(--code);padding:1px 6px;border-radius:4px;font-size:.92em;word-break:break-all}
+pre{background:var(--code);border:1px solid var(--line);border-radius:8px;padding:16px;max-height:360px;overflow:auto;white-space:pre-wrap;word-break:break-all;font-size:.85rem;line-height:1.6}
+button,.btn{display:inline-block;background:var(--accent);color:var(--bg);border:0;border-radius:6px;padding:8px 16px;font:inherit;font-size:.95rem;cursor:pointer;text-decoration:none}
+.row{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin:8px 0}
+.note{font-size:.9rem;color:var(--muted)}
+</style>
+</head>
+<body>
+<main>
+<h1>アカリク登録キット</h1>
+<p class="lead">AIエージェントに、アカリクへの登録・プロフィール入力・アンケート回答までを進めてもらうための手順書です。あなたがやるのは、ログインとパスワードの入力、最後の確認でOKを出すことの2つだけです。</p>
+
+<div class="box">
+<strong>特典の条件</strong>（Amazonギフトカード2,000円分）
+<ol>
+<li>2026-10-31 23:59までに、DMで受け取った紹介リンクから登録する</li>
+<li>登録から10日以内に「プロフィール充実度70%以上」と「メールで届くアンケートへの回答」を済ませる</li>
+</ol>
+<p class="note">対象は27・28・29卒の修士・博士で、まだアカリクに登録していない方です。シークレットモードで開くと計測されないので、普段のブラウザで開いてください。</p>
+</div>
+
+<h2>1. 自分のXアカウントを書き込む</h2>
+<p>エージェントは、あなたのXの投稿から事実だけを拾ってプロフィールを埋めます。下の手順書の <code>@ここをあなたのXアカウントに書き換える</code> を、あなたのXアカウント（@から）に書き換えてください。Threadsもあれば <code>threads_account</code> に入れます。論文やスライドがあれば <code>research_files</code> に場所を書くと、研究の欄が厚くなります。</p>
+
+<h2>2-A. Claude Code を使っている場合</h2>
+<ol>
+<li><a href="SKILL.md" download="SKILL.md">SKILL.md</a> をダウンロードし、1の書き換えをする</li>
+<li><code>~/.claude/skills/acaric-start/SKILL.md</code> に置く（Windowsは <code>C:\Users\&lt;ユーザー名&gt;\.claude\skills\acaric-start\SKILL.md</code>）</li>
+<li>ブラウザを操作できる状態（Claude in Chrome など）で「アカリクに登録して」と頼む</li>
+</ol>
+
+<h2>2-B. Codex・ChatGPT（エージェントモード）などの場合</h2>
+<p>下の手順書を全部コピーし、1の書き換えをしてから、ブラウザを操作できるエージェントに貼ってください。</p>
+<div class="row"><button id="copy" type="button">手順書をコピー</button><span id="copied" class="note" aria-live="polite"></span></div>
+<pre id="prompt">あなたは私の就活を手伝うエージェントです。次の手順どおりに、最後まで進めてください。
+
+
+# アカリク 登録からアンケートまで
+
+## 設定（最初から入っている。変えたいときだけ書き換える）
+
+```yaml
+invite_url: &quot;https://acaric.jp/signup/email?code=C3dUfocCF2ZkWT5E4yKGxBNLgKDLmkAH-Ct0m-5kDzAjE2mjsxxEr9QwSLl1jGZBI3K-MKU.&amp;utm_source=acaricWeb&amp;utm_medium=referral&amp;utm_campaign=friend&quot;
+x_account: &quot;@ここをあなたのXアカウントに書き換える&quot;
+threads_account: &quot;&quot;   # なければ空のまま
+research_files: []                      # 論文・スライド・ポスターの場所やURL（任意）
+target_percent: 85                      # 特典の条件は70%。スカウトを増やすため85%以上を目指す
+```
+
+本人が会話の中で別のアカウントや資料を伝えたら、そちらを優先する。
+
+## 守ること
+
+- 書くのは、本人の投稿・資料・本人の答えにある事実だけ。数字・受賞・技術・成果を作らない（アカリクは虚偽の記入を特典の対象外にしている）。根拠がない欄は空けて、確認のときにまとめて聞く。
+- メールアドレス・パスワード・認証コード・電話番号のSMS認証は、本人に入力してもらう。
+- 本人に確認するのは、保存と送信の前の**1回だけ**。プロフィールの全欄とアンケートの回答案をまとめて見せ、OKをもらってから保存・送信する。それ以外の場面では本人に質問しない。
+- 本人に聞くときは、**必ず選択式**にする。選択肢は2〜3個で、おすすめを先頭に「（おすすめ）」と付け、自由に書ける「その他」も残す。Claude Codeなら AskUserQuestion を使い、選択肢を出すツールがないエージェントでは「1. 〜（おすすめ） 2. 〜 3. その他」と番号で並べ、番号だけで答えられるようにする。
+  - 確認の例：「1. この内容で保存・送信する（おすすめ） 2. 直したい欄がある 3. いったん止める」
+  - 足りない事実を聞く例：「希望職種はどれに近いですか？ 1. 研究開発（おすすめ：投稿から推定） 2. ソフトウェア開発 3. その他」
+
+## 手順
+
+1. **材料を集める**（本人に何も聞かずに進める）
+   - ブラウザで `x_account`（と `threads_account`）の投稿をさかのぼって読む。拾うもの：研究の内容、使っている技術・ツール、作ったもの、アルバイト・サークル・インターン・留学・資格、続けてきたこと、うまくいかなかった話と工夫、志望業界・職種。
+   - `research_files` があれば読む。
+   - 「事実／出どころ（投稿URLや資料名）」の表にする。
+2. **登録する**
+   - 普段使っているブラウザ（シークレットモードではない・Cookieを切っていない）で `invite_url` を開く。招待リンクを通さないと特典が計測されない。URLは途中で切らずに、`code=` から `utm_campaign=friend` まで全部使う。
+   - すでにアカリクに登録済みなら特典の対象外なので、そう伝えて手順3に進む（スカウトを増やす目的では続ける意味がある）。
+   - 登録の入口は2つ。本人に選んでもらう：「1. Googleで登録（おすすめ：パスワードを作らずに済む） 2. メールアドレスで新規登録 3. その他」
+     - Googleで登録：ボタンを押し、Googleのアカウント選択とログインは本人が行う。
+     - メールアドレスで新規登録：メールアドレスの欄（確認用と2つ）は本人が入力して送る。届いた確認メールのリンクを開き、パスワードは本人が入力する。氏名・大学・研究科・卒業年度などの基本情報は、手順1の表と本人の答えから入れてよい。
+   - 登録日をメモし、「登録日＋10日」を特典の期限として報告に書く。
+3. **入力案を作る**（ https://acaric.jp/profile/edit の欄に合わせる）
+   - 文章の欄はどれも300字以上・500字以内：自己PR／就職先でやってみたいこと／研究テーマ／研究を通じて得た能力・知見
+   - 研究テーマは「何を・なぜ・どうやって・結果（数字）・今やっていること」の順に、専門外の人事にも分かる言葉で書く。
+   - 選ぶ欄も空けない：主専門分野、研究・技術キーワード（実際に使っているものだけ）、ITスキル、希望業種・職種・勤務地、言語スキル、インターン等の経験、所属学会・受賞歴・ポートフォリオのURL。
+4. **アンケートの回答案を作る**：登録したメールアドレスの受信箱で「アカリク」「アンケート」を検索する（迷惑メールフォルダも見る）。届いていれば開き、集めた事実で回答案を作る。まだなら手順7で答える。
+5. **確認（1回だけ）**：プロフィール全欄の案（字数・出どころつき）、アンケートの回答案、埋められなかった欄への質問をまとめて見せ、OKか直しをもらう。
+6. **入力して保存**：欄ごとに入力して「変更を保存する」を押す。ページ上部の「プロフィール充実度」を読み、`target_percent` に届かなければ、手順5でもらった答えから足りない欄を埋める（最低でも70%）。
+   - 実例（2026-10-07、配布元の本人のアカウント）：65%→85%に上がったのは、文章の4欄をそれぞれ300字以上にし、主専門分野を選び、ITスキル（言語の追加）・言語スキル（TOEIC）・受賞歴とポートフォリオURLを入れたとき。上がらなければこの順に空き欄を探す。
+   - 文章の欄は500字を超えると保存できないことがある。保存後にページを開き直し、入れた文が残っているかを確かめる。
+7. **アンケートを送信**：手順5でOKをもらった回答で送信する。アンケートのメールが後から届いた場合は、回答案を作って本人に見せ、OKをもらってから送信する。期限は登録から10日以内。
+8. **報告**：充実度、入力した欄、空いている欄、アンケートの送信状況を4行で。
+</pre>
+
+<h2>注意</h2>
+<ul>
+<li>エージェントには、あなたの投稿・資料・答えにある事実だけを書くよう指示してあります。確認の画面で、事実と違う所がないかだけ見てください。</li>
+<li>わからないことは、紹介リンクを受け取ったDMで聞いてください。</li>
+</ul>
+</main>
+<script>
+document.getElementById('copy').addEventListener('click', async () => {
+  const t = document.getElementById('prompt').textContent;
+  const s = document.getElementById('copied');
+  try { await navigator.clipboard.writeText(t); s.textContent = 'コピーしました'; }
+  catch (e) { s.textContent = 'コピーできませんでした。枠の中を選んでコピーしてください'; }
+});
+</script>
+</body>
+</html>
